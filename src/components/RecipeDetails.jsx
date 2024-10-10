@@ -53,26 +53,33 @@ const RecipeDetail = () => {
 
   return (
     <Container style={containerStyles}>
-      <Box sx={{ display: "flex", height: "100vh" }}>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexDirection: { xs: "column", md: "row" },  // Stack on small screens, side-by-side on medium and up
+          height: "auto" 
+        }}
+      >
+        {/* Sidebar with Image */}
         <Box
           sx={{
-            flex: "0 0 300px",
-            position: "fixed",
-            width: "300px",
-            height: "100vh",
-            overflow: "hidden",
+            flex: { xs: "none", md: "0 0 300px" }, // Full width on small screens, fixed on larger
+            width: { xs: "100%", md: "300px" }, // Full width on small screens
+            height: { xs: "auto", md: "100vh" },
+            marginBottom: { xs: "20px", md: "0" }, // Space between on mobile
+            textAlign: "center",  // Centered on smaller screens
           }}
         >
           <CardMedia
             component="img"
             alt={recipe.label}
-            height="100%"
+            height="auto"
             image={recipe.image}
             sx={{
               objectFit: "cover",
-              height: "300px",
-              width: "300px",
-              marginTop: "70px",
+              width: "100%",  // Full width on all screens
+              height: { xs: "auto", md: "300px" },  // Adjust height on larger screens
+              marginTop: { xs: "0", md: "70px" },
             }}
           />
           <Typography
@@ -80,24 +87,22 @@ const RecipeDetail = () => {
             variant="h4"
             component="div"
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              marginTop: { xs: "10px", md: "20px" },
               fontWeight: "600",
               color: theme === "light" ? "#000" : "#fff",
+              fontSize: { xs: "1.5rem", md: "2rem" },  // Adjust font size for responsiveness
             }}
           >
             {recipe.label}
           </Typography>
         </Box>
 
+        {/* Recipe Content */}
         <Box
           sx={{
-            flex: "1",
-            marginLeft: "300px",
-            padding: "20px",
-            overflowY: "scroll",
-            height: "100vh",
+            flex: 1,
+            padding: { xs: "10px", md: "20px" },
+            overflowY: "auto",
             ...boxStyles,
           }}
         >
@@ -108,10 +113,9 @@ const RecipeDetail = () => {
                 variant="h4"
                 component="div"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  textAlign: "center",
                   fontWeight: "700",
+                  fontSize: { xs: "1.5rem", md: "2rem" },  // Responsive font size
                   color: theme === "light" ? "#000" : "#fff",
                 }}
               >
@@ -243,3 +247,4 @@ const RecipeDetail = () => {
 };
 
 export default RecipeDetail;
+
