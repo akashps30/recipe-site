@@ -17,6 +17,7 @@ import {
   useClerk,
 } from "@clerk/clerk-react";
 import { useTheme } from "./ThemeContext";
+import Logo from '../../src/assets/Logo.png'; // Correct import for the logo
 
 const Navbar = () => {
   const { user } = useUser();
@@ -31,11 +32,6 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const logoSrc =
-    theme === "light"
-      ? "../../src/assets/Logo.png"
-      : "../../src/assets/Logo2.png";
 
   const handleLogout = async () => {
     await signOut();
@@ -52,12 +48,11 @@ const Navbar = () => {
       <Toolbar>
         <Box sx={{ flexGrow: 1 }}>
           <img
-            src={logoSrc}
+            src={Logo}  // Use the imported logo here
             alt="Recipe Finder"
             style={{ height: "40px", width: "auto" }}
           />
         </Box>
-      
 
         <SignedIn>
           {user && (
